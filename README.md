@@ -87,27 +87,16 @@ source venv/bin/activate  # On Windows use `venv\Scripts\activate`</code></pre>
     <li>Phone: (+91) 8904418765</li>
 </ul>
 
-<h3>Main Page</h3>
+<h3>Here How it Looks..!</h3>
+<br>
     <img src="https://github.com/user-attachments/assets/c5e27f9f-7e20-4dc0-864f-94d1d4b6aa30" alt="Main Page" style="max-width: 100%; height: auto;">
 
-<h3>Menu Page</h3>
+<br>
     <img src="https://github.com/user-attachments/assets/a59f885f-987a-4a09-80e7-f00631091714" alt="Menu Page" style="max-width: 100%; height: auto;">
 
-<h3>Cart Page</h3>
+<br>
     <img src="https://github.com/user-attachments/assets/298199ea-f39e-4b61-b23f-95ae377786c9" alt="Cart Page" style="max-width: 100%; height: auto;">
 
-<h3>Checkout Page</h3>
-    <img src="https://github.com/user-attachments/assets/3ea782c5-dd5c-4c92-9e0b-3b7b221a681b" alt="Checkout Page" style="max-width: 100%; height: auto;">
-
-<h3>Order Confirmation Page</h3>
-    <img src="https://github.com/user-attachments/assets/6a11eb83-e010-4851-a5f2-0b35cfa456e3" alt="Order Confirmation Page" style="max-width: 100%; height: auto;">
-
-<h3>Reservation Page</h3>
-    <img src="https://github.com/user-attachments/assets/71e9a98c-d01e-4c18-9269-b36bc284803c" alt="Reservation Page" style="max-width: 100%; height: auto;">
-
-<h3>User Profile Page</h3>
-    <img src="https://github.com/user-attachments/assets/fd72308b-0cf1-446d-9f35-fa97b847db3e" alt="User Profile Page" style="max-width: 100%; height: auto;">
-
-<h3>Admin Dashboard</h3>
+<br>
     <img src="https://github.com/user-attachments/assets/8c1e0005-b062-450a-9d1e-5c000f16c53b" alt="Admin Dashboard" style="max-width: 100%; height: auto;">
 
