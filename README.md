@@ -94,7 +94,8 @@ source venv/bin/activate  # On Windows use `venv\Scripts\activate`</code></pre>
 <img src="https://github.com/user-attachments/assets/c5e27f9f-7e20-4dc0-864f-94d1d4b6aa30" alt="Main Page" style="max-width: 100%; height: auto;">
 <br>
     <img src="https://github.com/user-attachments/assets/298199ea-f39e-4b61-b23f-95ae377786c9" alt="Cart Page" style="max-width: 100%; height: auto;">
-
+  <img src="![Screenshot 2024-07-24 172811](https://github.com/user-attachments/assets/5b75fec3-4d7d-4bcc-a727-f47d08358d14)">
+  <img src="![Screenshot 2024-07-24 173013](https://github.com/user-attachments/assets/74335e1c-3a8b-48e7-a4f7-0389cfbc3628)">
 <br>
     <img src="https://github.com/user-attachments/assets/8c1e0005-b062-450a-9d1e-5c000f16c53b" alt="Admin Dashboard" style="max-width: 100%; height: auto;">
 
