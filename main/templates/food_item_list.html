@@ -1,0 +1,168 @@
+{% include "navbar.html"%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Items</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem; /* Adjust padding as needed */
+        }
+        
+        .header-container h1 {
+            margin: 0; /* Remove default margin */
+        }
+        
+        .header-container a {
+            margin: 0; /* Remove default margin */
+        }
+        
+        .food-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            height: auto; /* Allow height to adjust based on content */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+            position: relative; /* Ensure child elements are positioned correctly */
+        }
+        .food-item img {
+            width: 100%; /* Make image fit the card width */
+            height: 150px; /* Fixed height for the image */
+            object-fit: cover; /* Ensure image covers the area without distortion */
+            margin-bottom: 10px; /* Add spacing below the image */
+        }
+        .food-item h4, .food-item p {
+            margin: 0;
+            padding: 0;
+        }
+        .add-to-cart-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between; /* Space between quantity selector and button */
+            margin-top: auto; /* Push to the bottom of the card */
+        }
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 5px; /* Space between the quantity input and buttons */
+        }
+        .quantity-selector button {
+            border: 1px solid #ddd;
+            background-color: #f8f9fa;
+            padding: 5px 10px;
+        }
+        .quantity-selector input {
+            width: 50px;
+            text-align: center;
+            margin: 0 5px;
+        }
+        .add-to-cart-btn {
+            margin-left: 10px; /* Space between the quantity selector and button */
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+       
+        .custom-button {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: #4CAF50; /* Change to your desired background color */
+            color: white; /* Text color */
+            border: none;
+            border-radius: 25px; /* Rounded corners */
+            font-size: 1rem;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        
+        .custom-button:hover {
+            background-color: #45a049; /* Darker color on hover */
+        }
+        .footer {
+            background-color: #333; /* Dark background color */
+            color: #fff; /* White text color */
+            padding: 20px 0;
+            text-align: center;
+        }
+        .footer a {
+            color: #f8f9fa; /* Light text color for links */
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="header-container">
+            <h1 class="mb-4">Food Items</h1>
+            <a href="{% url 'menu' %}" class="custom-button">Back TO Menu</a>
+        </div>
+        
+        <div class="row">
+            {% for item in food_items %}
+            <div class="col-md-4">
+                <div class="food-item">
+                    <img src="{{ item.image.url }}" alt="{{ item.name }}" class="img-fluid">
+                    <h4>{{ item.name }}</h4>
+                    <p>{{ item.description }}</p>
+                    <p>Price: ₹{{ item.price|floatformat:2 }}</p>
+                    <!-- Add the form to add items to the cart -->
+                    <form method="post" action="{% url 'cart:add_to_cart' item.id %}">
+                        {% csrf_token %}
+                        <div class="add-to-cart-container">
+                            <div class="quantity-selector">
+                                <button type="button" onclick="decrementQuantity({{ item.id }})" class="btn btn-outline-secondary">-</button>
+                                <input type="number" id="quantity-{{ item.id }}" name="quantity" value="1" min="1">
+                                <button type="button" onclick="incrementQuantity({{ item.id }})" class="btn btn-outline-secondary">+</button>
+                            </div>
+                            <button type="submit" class="btn btn-primary add-to-cart-btn">Add to Cart</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+            {% endfor %}
+            
+
+        </div>
+        
+
+    </div>
+    <footer class="footer">
+        <p>&copy; 2024 MT Elite Restaurant. All rights reserved.</p>
+        <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    </footer>
+    <script>
+        function decrementQuantity(id) {
+            var quantityInput = document.getElementById('quantity-' + id);
+            var currentValue = parseInt(quantityInput.value);
+            if (currentValue > 1) {
+                quantityInput.value = currentValue - 1;
+            }
+        }
+
+        function incrementQuantity(id) {
+            var quantityInput = document.getElementById('quantity-' + id);
+            quantityInput.value = parseInt(quantityInput.value) + 1;
+        }
+    </script>
+</body>
+</html>

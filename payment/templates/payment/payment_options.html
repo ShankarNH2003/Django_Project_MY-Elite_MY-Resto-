@@ -1,0 +1,60 @@
+{% include 'navbar.html'%}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Options</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa; /* Light background color */
+            margin: 0;
+            padding: 0;
+           
+        }
+        .container1 {
+            max-width: 500px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect */
+            text-align: center; /* Center text inside the container */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            align-items: center; /* Center content horizontally */
+            justify-content: center; /* Center content vertically */
+        }
+        .btn-primary {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Payment Options</h1>
+        <p>Total Amount: ₹{{ total_price|floatformat:2 }}</p>
+
+        {% comment %} <!-- Example payment options -->
+        <form method="post" action="{% url 'payment:process_payment' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="payment_method">Select Payment Method</label>
+                <select class="form-control" id="payment_method" name="payment_method">
+                    <option value="credit_card">Credit Card</option>
+                    <option value="paypal">PayPal</option>
+                    <!-- Add other payment methods here -->
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Proceed to Payment</button>
+        </form> {% endcomment %}
+
+        <!-- Link to continue shopping -->
+        <a href="{% url 'food_item_list' %}" class="btn btn-secondary mt-3">Continue Ordering</a>
+        <a href="{% url 'index' %}" class="btn btn-secondary mt-4">Back to Home</a>
+    </div>
+</body>
+</html>
+{% endblock %}

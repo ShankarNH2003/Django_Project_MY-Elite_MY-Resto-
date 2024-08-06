@@ -1,0 +1,62 @@
+{% include "navbar.html" %}
+
+{% block content %}
+<style>
+    /* Glassmorphism effect for cards */
+.glass-effect {
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent white background */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Semi-transparent border */
+    border-radius: 10px; /* Rounded corners */
+    backdrop-filter: blur(10px); /* Blurred background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+    padding: 15px;
+}
+
+.card-title {
+    font-size: 1.25rem; /* Slightly larger font for card title */
+}
+
+.card-text {
+    font-size: 1rem; /* Standard font size for card text */
+}
+
+.badge-success {
+    background-color: #28a745; /* Green badge for available status */
+}
+
+.badge-danger {
+    background-color: #dc3545; /* Red badge for reserved status */
+}
+</style>
+<div class="container mt-5">
+    <h1>Available Rooms</h1>
+    <div class="row">
+        {% for room in rooms %}
+        <div class="col-md-4 mb-4">
+            <div class="card glass-effect">
+                <div class="card-body">
+                    <h5 class="card-title">Room: {{ room.room_type.name }}</h5>
+                    <p class="card-text">Capacity: {{ room.capacity }}</p>
+                    <p class="card-text">
+                        {% if room.available %}
+                            <span class="badge badge-success">Available</span>
+                        {% else %}
+                            <span class="badge badge-danger">Reserved</span>
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <div class="card glass-effect">
+                <div class="card-body">
+                    <p class="card-text">No rooms available.</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <a href="{% url 'book_room' %}" class="btn btn-primary mt-4">Book a Room</a>
+</div>
+{% endblock %}

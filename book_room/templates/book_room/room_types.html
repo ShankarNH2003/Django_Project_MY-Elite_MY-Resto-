@@ -1,0 +1,67 @@
+{% load static %}
+{% include "navbar.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Types</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background: rgba(240, 240, 240, 0.8);
+            backdrop-filter: blur(10px);
+            font-family: Arial, sans-serif;
+        }
+    
+        .card {
+            background: rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .card:hover {
+            background: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        .card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            transition: transform 0.3s ease-in-out;
+        }
+        .card img:hover {
+            transform: scale(1.05);
+        }
+        .room-type h2 {
+            margin-top: 15px;
+        }
+        .room-type p {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+  
+    <div class="container">
+        <h1 class="mb-4">Room Types</h1>
+        <div class="row">
+            {% for room_type in room_types %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <a href="{% url 'rooms_by_type' room_type.id %}">
+                            <img src="{{ room_type.image.url }}" alt="{{ room_type.name }}">
+                            <h2>{{ room_type.name }}</h2>
+                        </a>
+                        <p>{{ room_type.description }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

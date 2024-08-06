@@ -1,0 +1,57 @@
+{% load static %}
+{% include "navbar.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservation Confirmation</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa; /* Light background color */
+            margin: 0;
+            padding: 0;
+             /* Adjust to the height of the navbar to prevent overlap */
+        }
+        .container1 {
+            max-width: 600px;
+            padding-top: 30px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect */
+            text-align: center; /* Center text inside the container */
+        }
+        .logo1 {
+            display: block;
+            margin: 0 auto;
+            width: 150px; /* Adjust width as needed */
+        }
+        .btn-primary1 {
+            margin-top: 20px;
+        }
+        .body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 56px); /* Adjust height to account for the navbar */
+        }
+    </style>
+</head>
+<body>
+    
+
+    <div class="container1">
+        <img src="{% static 'assets/confirmed.png' %}" alt="Logo" class="logo1"> <!-- Replace with your logo file -->
+        <h1>Reservation Confirmed</h1>
+        <img src="{% static 'assets/confirmed1.png' %}" alt="Logo" class="logo1"> <!-- Replace with your logo file -->
+        <p>Your table reservation has been confirmed.</p>
+        <a href="{% url 'view_available_tables' %}" class="btn btn-primary1">View Available Tables</a>
+    </div>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

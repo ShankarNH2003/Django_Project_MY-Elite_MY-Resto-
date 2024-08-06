@@ -1,0 +1,108 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .navbar {
+            background: radial-gradient(circle, rgba(87,86,86,1) 0%, rgba(0,25,54,1) 100%);
+            backdrop-filter: blur(5px); /* Glassmorphism effect */
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            z-index: 10; /* Ensure navbar is on top of hero image */
+            
+             /* Glassmorphism effect */
+        }
+        .navbar-dark .navbar-nav .nav-link {
+            color: #fff; /* White text color for links */
+        }
+        .navbar-dark .navbar-brand {
+            color: #fff; /* White color for brand name */
+        }
+        .navbar-dark .navbar-nav .nav-link:hover {
+            color: #f0f0f0; /* Light grey on hover */
+        }
+        .profile-image {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-image"></div>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="{% url 'index' %}">
+            <img src="{% static 'D:/Final_Resto/static/assets/LOGO.png' %}" alt="Logo" style="height: 60px;width:240px;">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'index' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/menu/">Explore Menu</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Tables
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{% url 'view_available_tables' %}">View Available Tables</a>
+                            <a class="dropdown-item" href="{% url 'reserve_table' %}">Book Table</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownRooms" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Rooms
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownRooms">
+                            <a class="dropdown-item" href="{% url 'view_available_rooms' %}">View Available Rooms</a>
+                            <a class="dropdown-item" href="{% url 'room_types_view' %}">View Room Types</a>
+                            <a class="dropdown-item" href="{% url 'book_room' %}">Book Room</a>
+                        </div>
+                    </li>
+                    
+                    
+                    <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About Us</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'manage_profile' user.id %}">
+                            {{ user.username }}
+                            {% if user.image %}
+                                <img class="profile-image" src="{{ user.image.url }}" alt="{{ user.username }}">
+                            {% else %}
+                                <img class="profile-image" src="{% static 'images/default-profile.png' %}" alt="{{ user.username }}">
+                            {% endif %}
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Register</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">
+                        Profile
+                        <img class="profile-image" src="{% static 'D:/Final_Resto/static/assets/default-profile.png' %}" alt="Profile">
+                    </a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
+
+</body>
+</html>

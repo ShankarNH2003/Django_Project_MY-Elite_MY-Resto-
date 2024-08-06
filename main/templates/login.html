@@ -1,0 +1,86 @@
+
+{% block content %}
+{% include "navbar.html" %}
+
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-black">
+            <h1 class="display-4 fw-bolder">Log In To Your Account</h1>
+        </div>
+    </div>
+
+<section class="py-5 text-center">
+    <div class="login-container">
+        <form action="{% url 'login' %}" method="POST">
+            {% csrf_token %}
+            {{ form.as_table }}
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+        <br>
+        <p>If not registered, <a href="{% url 'register' %}">Register</a></p>
+    </div>
+</section>
+
+<style>
+    body{
+        background: rgb(229,205,138);
+        background: radial-gradient(circle, rgba(229,205,138,1) 0%, rgba(223,220,211,1) 0%, rgba(232,200,128,1) 0%, rgba(239,222,180,1) 100%, rgba(255,249,249,1) 100%);
+    }
+    .login-container {
+        background: rgba(255, 255, 255, 0.3); /* Glassmorphism effect */
+        border-radius: 15px;
+        padding: 30px;
+        max-width: 400px;
+        margin: 0 auto;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    form table {
+        width: 100%;
+    }
+
+    form button {
+        margin-top: 20px;
+        background-color: #007bff; /* Primary button color */
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    form button:hover {
+        background-color: #0056b3; /* Darker shade on hover */
+    }
+
+    .btn-primary {
+        background-color: #007bff; /* Primary button color */
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3; /* Darker shade on hover */
+    }
+
+    .text-center a {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+    .text-center a:hover {
+        text-decoration: underline;
+    }
+</style>
+
+{% endblock %}

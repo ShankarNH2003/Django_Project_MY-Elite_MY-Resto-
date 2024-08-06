@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - Resto</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    {% load static %}
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .glass-container {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            max-width: 1200px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .card-group-container {
+            background: rgba(240, 240, 240, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+        .custom-card {
+            width: 100%;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+        .custom-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 11px rgba(33,33,33,.2);
+        }
+        .custom-card-img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+        }
+        .card-title {
+            margin-bottom: 0;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+        .card-title:hover {
+            color: #007bff;
+        }
+        .card-footer {
+            padding: 10px;
+            text-align: center;
+        }
+        .btn-group {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .section-heading {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation-->
+    {% include "navbar.html" %}
+
+    <!-- Menu Section -->
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 mt-5 glass-container">
+            <!-- Section Heading -->
+            <div class="section-heading">Food Menu</div>
+            
+            <!-- Card Group Container -->
+            <div class="card-group-container">
+                <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-3 row-cols-lg-3 row-cols-xl-3 justify-content-center">
+                    {% if user.is_authenticated %}
+                        {% for item in items %}
+                            {% if item.available %}
+                            <div class="col mb-5">
+                                <div class="card custom-card h-100">
+                                    <!-- Product image -->
+                                    <a href="{% url 'category_list' item.id %}">
+                                        <img src="{{ item.image.url }}" class="card-img-top custom-card-img" alt="{{ item.name }}">
+                                        <div class="card-body">
+                                            <h5 class="card-title text-center">{{ item.name }}</h5>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        {% for item in items %}
+                            {% if item.available %}
+                            <div class="col mb-5">
+                                <div class="card custom-card h-100">
+                                    <!-- Product image -->
+                                    <img src="{{ item.image.url }}" class="card-img-top custom-card-img" alt="{{ item.name }}">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-center">{{ item.name }}</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center">
+                                <a class="btn btn-outline-dark mt-auto" href="{% url 'login' %}">Get Login</a>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            
+            {% if user.is_authenticated %}
+                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                    <div class="text-center">
+                        <a class="btn btn-outline-dark mt-auto" href="/cart/">View Cart</a>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </section>
+
+    <!-- Footer-->
+</body>
+</html>

@@ -1,0 +1,59 @@
+{% load static %}
+{% include "navbar.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservation Confirmation</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa; /* Light background color */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .container1 {
+            max-width: 600px;
+            margin: 30px auto; /* Center the container and add margin on top and bottom */
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect */
+            text-align: center; /* Center text inside the container */
+        }
+        .logo1 {
+            display: block;
+            margin: 0 auto;
+            width: 150px; /* Adjust width as needed */
+        }
+        .btn-primary1, .btn-secondary {
+            margin-top: 20px;
+            margin-right: 10px; /* Space between buttons */
+        }
+        .button-group {
+            margin-top: 20px;
+            text-align: center; /* Center buttons in the button group */
+        }
+    </style>
+</head>
+<body>
+    <div class="container1">
+        <img src="{% static 'assets/confirmed.png' %}" alt="Confirmation" class="logo1">
+        <h1>Booking Confirmed</h1>
+        <img src="{% static 'assets/confirmed1.png' %}" alt="Confirmation" class="logo1">
+        <p>Your Room Booking has been confirmed.</p>
+        <div class="button-group">
+            <a href="{% url 'view_available_tables' %}" class="btn btn-secondary">View Available Tables</a>
+            <a href="{% url 'view_available_rooms' %}" class="btn btn-secondary">View Available Rooms</a>
+            <a href="{% url 'index' %}" class="btn btn-secondary">Back to Home</a>
+        </div>
+    </div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

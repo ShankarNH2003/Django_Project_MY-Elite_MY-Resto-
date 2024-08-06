@@ -1,0 +1,42 @@
+{% include "navbar.html" %}
+
+{% block content %}
+<style>
+    /* Glassmorphism effect for the card */
+.glass-effect {
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent white background */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Semi-transparent border */
+    border-radius: 10px; /* Rounded corners */
+    backdrop-filter: blur(10px); /* Blurred background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+}
+
+/* Center align form and buttons */
+.text-center {
+    text-align: center;
+}
+
+/* Additional padding and margin for the card */
+.card {
+    padding: 20px;
+    margin-top: 20px;
+}
+</style>
+<div class="container mt-5">
+    <h1 class="text-center">Book a Room</h1>
+    <div class="d-flex justify-content-center">
+        <div class="card glass-effect p-4" style="max-width: 600px; width: 100%;">
+            <form method="post" action="{% url 'book_room' %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-primary">Book Now</button>
+                </div>
+            </form>
+            <div class="text-center mt-4">
+                <a href="{% url 'view_available_rooms' %}" class="btn btn-secondary">View Available Rooms</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% load custom_filters %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Order Confirmation</h1>
+        <p>Your order has been confirmed. Please proceed to payment.</p>
+        <p>Order ID: {{ order.uuid }}</p> <!-- Display unique order ID -->
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item, total in cart_items %}
+                <tr>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>${{ item.item.price|floatformat:2 }}</td>
+                    <td>${{ total|floatformat:2 }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <h4>Total Price: ${{ total_price|floatformat:2 }}</h4>
+        <a href="#" class="btn btn-primary">Proceed to Payment</a>
+    </div>
+</body>
+</html>

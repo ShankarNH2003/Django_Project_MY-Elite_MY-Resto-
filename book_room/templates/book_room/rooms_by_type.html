@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ room_type.name }} Rooms</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background: rgba(240, 240, 240, 0.8);
+            backdrop-filter: blur(10px);
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease-in-out;
+        }
+        .card:hover {
+            background: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .room-list {
+            margin-top: 20px;
+        }
+        .room-item {
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        .room-item.available {
+            background-color: #eaffea;
+        }
+        .room-item.not-available {
+            background-color: #ffeaea;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+    </style>
+</head>
+<body>
+    {% include "navbar.html" %}
+    <div class="container">
+        <h1 class="mb-4">Rooms in {{ room_type.name }}</h1>
+        <div class="row">
+            {% for room in rooms %}
+                <div class="col-md-4">
+                    <div class="card {% if room.available %}available{% else %}not-available{% endif %}">
+                        <h3 class="card-title">Room {{ room.number }}</h3>
+                        <p class="card-text">Capacity: {{ room.capacity }}</p>
+                        <p class="card-text">
+                            {% if room.available %}
+                                <span class="status-available">✔️ Available</span>
+                            {% else %}
+                                <span class="status-reserved">Reserved ✘</span>
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+            {% empty %}
+                <p>No rooms available in this category.</p>
+            {% endfor %}
+        </div>
+        <a href="{% url 'room_types_view' %}" class="btn btn-primary mt-4">Back to Room Types</a>
+        <a href="{% url 'book_room' %}" class="btn btn-primary mt-4">Back to Room Types</a>
+
+    </div>
+</body>
+</html>
